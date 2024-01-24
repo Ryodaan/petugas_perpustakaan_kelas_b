@@ -1,6 +1,6 @@
-# flutter_juldan
+# Tugas_Flutter_Juldan
 
-A new Flutter project.
+Membuat program perpustakaan digital menggunakan flutter
 
 ## Getting Started
 
