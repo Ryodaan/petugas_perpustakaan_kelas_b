@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_juldan/app/modules/book/controllers/book_controller.dart';
+import 'package:flutter_juldan/app/routes/app_pages.dart';
 
 import 'package:get/get.dart';
 
-import '../controllers/book_controller.dart';
 
 class BookView extends GetView<BookController> {
   const BookView({Key? key}) : super(key: key);
@@ -13,12 +14,22 @@ class BookView extends GetView<BookController> {
         title: const Text('BookView'),
         centerTitle: true,
       ),
-      body: const Center(
-        child: Text(
-          'BookView is working',
-          style: TextStyle(fontSize: 20),
-        ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Get.toNamed(Routes.ADD_BOOK),
+        child: Icon(Icons.add),
       ),
+      body: controller.obx((state) => ListView.separated(
+        itemCount: state!.length,
+        itemBuilder: (context, index){
+          return ListTile(
+            title: Text("${state[index].judul}"),
+            subtitle: Text("Penulis ${state[index].penulis}"),
+          );
+          },
+        separatorBuilder: (context, index){
+          return Divider();
+        },
+        ))
     );
   }
 }
